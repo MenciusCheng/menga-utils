@@ -35,7 +35,7 @@ public class SignDemo3 {
         String format = decode("json");
         String appKey = decode("dianrong");
         // 应用级参数
-        String parameter = decode("%7B%22request%22%3A%7B%22extendTradeId%22%3A%22484%22%2C%22code%22%3A%22000000%22%2C%22message%22%3A%22%E7%AD%BE%E7%BA%A6%E8%B4%B7%E6%AC%BEID%3D55582351%E6%88%90%E5%8A%9F%28%E5%85%B6%E5%AE%9E%E8%BF%98%E6%B2%A1%E8%B5%B0%E7%AD%BE%E7%BA%A6%E6%B5%81%E7%A8%8B%29%22%2C%22funderId%22%3A%222%22%2C%22assetPoolId%22%3A%220%22%7D%7D");
+        String parameter = decode("%7b%22request%22%3a%7b%22extendTradeId%22%3a%2213235%22%2c%22code%22%3a%22000000%22%2c%22message%22%3a%221%22%2c%22funderId%22%3a%222%22%2c%22assetPoolId%22%3a%220%22%7d%7d");
 
         //系统级参数
         Map<String, String> sysParams = new HashMap<String, String>();

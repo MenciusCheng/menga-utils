@@ -27,17 +27,16 @@ public class SignDemo2 {
      */
     public static void main(String[] args) throws Exception {
 
-        String serviceName = decode("com.isuwang.soa.finance.service.FinanceDataTransferService");
+        String serviceName = decode("com.isuwang.soa.order.service.OrderFunderService");
         String versionName = decode("1.0.0");
-        String methodName = decode("backListedOrder");
+        String methodName = decode("getOrderZipAttachment");
         String timestamp = decode(String.valueOf(System.currentTimeMillis() / 1000));
         String format = decode("json");
-        String appKey = decode("xiaonuo");
+        String appKey = decode("dianrong");
         // 应用级参数
         // 生产
-//        String parameter = decode("%7b%22orderNo%22%3a%22K2018032362075%22%2c%22funderId%22%3a%222%22%7d");
+        String parameter = decode("%7b%22orderNo%22%3a%22K2018032362075%22%2c%22funderId%22%3a%222%22%7d");
         // sandbox3
-        String parameter = decode("%7b%22jsonData%22%3a%22%7b%5c%22jsonData%5c%22%3a%5b%7b%5c%22orderId%5c%22%3a%5c%22K2017990890593%5c%22%2c%5c%22result%5c%22%3a%5c%22000000%5c%22%2c%5c%22desc%5c%22%3a%5c%22aaaa%5c%22%7d%5d%7d%22%7d");
 //        String parameter = decode("%7b%22orderNo%22%3a%22K2018022290380%22%2c%22funderId%22%3a%222%22%7d");
 
         //系统级参数
@@ -52,7 +51,7 @@ public class SignDemo2 {
         //对系统级参数进行排序，并拼接上应用级参数
         String data = convertToSortStr(sysParams) + parameter;
 
-        String sign = byte2hex(encryptHMAC(data,"isu20171218"));
+        String sign = byte2hex(encryptHMAC(data,"isu20180112"));
         System.out.println("timestamp=" + timestamp);
         System.out.println("sign=" + sign);
 }

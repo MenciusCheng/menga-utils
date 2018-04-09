@@ -1,24 +1,23 @@
 package com.menga.openapi;
 
 import org.apache.commons.lang3.StringUtils;
-import sun.net.www.http.HttpClient;
 
+import javax.crypto.Mac;
+import javax.crypto.SecretKey;
+import javax.crypto.spec.SecretKeySpec;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.security.GeneralSecurityException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import javax.crypto.Mac;
-import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
-import javax.servlet.http.HttpServletRequest;
+
 /**
  * Created by jiangpeng on 2017/12/27.
  */
 public class SignDemo {
-    public static final String CHARSET_UTF8 = "UTF-8";
-    public static final String KEY_MAC = "HmacMD5";
+    private static final String CHARSET_UTF8 = "UTF-8";
+    private static final String KEY_MAC = "HmacMD5";
     private static final String HEXSTR =  "0123456789ABCDEF";
 
     /**
@@ -61,7 +60,7 @@ public class SignDemo {
 
 }
 
-    public static String decode(String str) throws Exception {
+    private static String decode(String str) throws Exception {
         return URLDecoder.decode(str, "UTF-8");
     }
 
@@ -104,7 +103,7 @@ public class SignDemo {
      * @return
      * @throws IOException
      */
-    public static byte[] encryptHMAC(String data, String secret) throws IOException {
+    private static byte[] encryptHMAC(String data, String secret) throws IOException {
         byte[] bytes = null;
         try {
             SecretKey secretKey = new SecretKeySpec(secret.getBytes(CHARSET_UTF8), KEY_MAC);
@@ -122,7 +121,7 @@ public class SignDemo {
      * @param bytes
      * @return
      */
-    public static String byte2hex(byte[] bytes) {
+    private static String byte2hex(byte[] bytes) {
         StringBuilder sign = new StringBuilder();
         for (int i = 0; i < bytes.length; i++) {
             sign.append(HEXSTR.charAt((bytes[i]&0xF0)>>4)); //字节高4位
