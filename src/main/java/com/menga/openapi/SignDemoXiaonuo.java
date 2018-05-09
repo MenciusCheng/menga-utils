@@ -29,12 +29,12 @@ public class SignDemoXiaonuo {
 
         String serviceName = decode("com.isuwang.soa.finance.service.FinanceDataTransferService");
         String versionName = decode("1.0.0");
-        String methodName = decode("backApprovalOrder");
+        String methodName = decode("backListedOrder");
         String timestamp = decode(String.valueOf(System.currentTimeMillis() / 1000));
         String format = decode("json");
         String appKey = decode("xiaonuo");
         // 应用级参数
-        String parameter = decode("%7b%22jsonData%22%3a%22%7b%5c%22jsonData%5c%22%3a%5b%7b%5c%22orderId%5c%22%3a%5c%22K2018040388297%5c%22%2c%5c%22result%5c%22%3a%5c%22000000%5c%22%7d%5d%7d%22%7d");
+        String parameter = decode("%7B%22jsonData%22:%22%7B%5C%22jsonData%5C%22:%5B%7B%5C%22orderId%5C%22:%5C%22K2018040388292%5C%22%7D%5D%7D%22%7D");
 
         //系统级参数
         Map<String, String> sysParams = new HashMap<String, String>();

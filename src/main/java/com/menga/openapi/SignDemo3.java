@@ -31,11 +31,12 @@ public class SignDemo3 {
         String versionName = decode("1.0.0");
         String methodName = decode("pushLoanResultByDianrong");
         String timestamp = decode(String.valueOf(System.currentTimeMillis() / 1000));
-//        String timestamp = decode(String.valueOf(1519465927));
         String format = decode("json");
         String appKey = decode("dianrong");
         // 应用级参数
-        String parameter = decode("%7b%22request%22%3a%7b%22extendTradeId%22%3a%2213235%22%2c%22code%22%3a%22000000%22%2c%22message%22%3a%221%22%2c%22funderId%22%3a%222%22%2c%22assetPoolId%22%3a%220%22%7d%7d");
+        // 生产
+        String parameter = decode("%7B%22request%22%3A%7B%22extendTradeId%22%3A%2216998%22%2C%22code%22%3A%22000000%22%2C%22message%22%3A%22%E7%AD%BE%E7%BA%A6%E8%B4%B7%E6%AC%BEID%3D26713221%E6%88%90%E5%8A%9F%22%2C%22funderId%22%3A%222%22%2C%22assetPoolId%22%3A%220%22%7D%7D");
+        // sandbox3
 
         //系统级参数
         Map<String, String> sysParams = new HashMap<String, String>();
