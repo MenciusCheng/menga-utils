@@ -25,83 +25,22 @@ public class War3Utils {
 
         System.out.println(hero);
 
-//        Hero hero = new Hero();
-//        hero.setLevel(1);
-//        hero.setAttack(150);
-//        hero.setArmor(15);
-//        hero.setHp(1350);
-//
-//        Unit monster = getRival(hero, 60, 3, 1.0, 2);
-//        Unit boss = getRival(hero, 6, 60, 0.5, 45);
-//
-//        System.out.println(hero);
-//        System.out.println(monster);
-//        System.out.println(boss);
+        Monster monster = getMonsterByHero(hero, 6, 3, 1.0, 10, 1);
 
-//        Integer hAttack = 150;
-//        Integer hDamage = getDamageByAttackDuration(hAttack, 0.5, 3);
-//        Integer mArmor = 2;
-//        Integer mHp = getHpByArmor(mArmor, hDamage);
-//        System.out.println("hero_attack=" + hAttack + ", monster_armor=" + mArmor + ", monster_hp=" + mHp);
-//
-//        Integer mAttack = 50;
-//        Integer mDamage = getDamageByAttackDuration(mAttack, 1.0, 60);
-//        Integer hArmor = 15;
-//        Integer hHp = getHpByArmor(hArmor, mDamage);
-//        System.out.println("monster_attack=" + mAttack + ", hero_armor=" + hArmor + ", hero_hp=" + hHp);
-//
-//        Integer hBDamage = getDamageByAttackDuration(hAttack, 0.5, 60);
-//        Integer bArmor = 30;
-//        Integer bHp = getHpByArmor(bArmor, hBDamage);
-//        Integer bAttack = getAttackByHp(hHp, hArmor, 6, 0.5);
-//        System.out.println("boss_attack=" + bAttack + ", boss_armor=" + bArmor + ", boss_hp=" + bHp);
-    }
+        System.out.println(monster);
 
-    /**
-     * 承受伤害 = 生命值 * (1 + armor * 护甲减伤因子)
-     * 攻击力 = 承受伤害 / 攻击持续时间(秒) * 攻击间隔(秒)
-     */
-    public static Integer getAttackByHp(Integer hp, Integer armor, Integer duration, Double delay) {
-        Double damage = hp * (1 + armor * DEFENSE_ARMOR);
-        return (int)(damage / duration * delay);
-    }
+        Monster boss = getMonsterByHero(hero, 6, 60, 0.5, 1, 2);
 
-    /**
-     * 造成伤害 = 攻击力 / 攻击间隔(秒) * 攻击持续时间(秒)
-     */
-    public static Integer getDamageByAttackDuration(Integer attack, Double delay, Integer duration) {
-        return (int)(attack / delay * duration);
-    }
-
-    /**
-     *     由公式 总生命值 = 生命值 * (1 + armor * 护甲减伤因子) 得到
-     * 生命值 = 总生命值 / (1 + armor * 护甲减伤因子)
-     */
-    public static Integer getHpByArmor(Integer armor, Integer hp) {
-        return (int)(hp / (1 + armor * DEFENSE_ARMOR));
+        System.out.println(boss);
     }
 
     /**
      * 计算攻击力对护甲减伤后的伤害
-     * damage = atk * (1 - def * 0.06 / (1 + def * 0.06))
-     * damage = atk * (1 / (1 + def * 0.06))
+     * damage = 攻击力 * (1 - 护甲 * 护甲减伤因子 / (1 + 护甲 * 护甲减伤因子))
+     * damage = 攻击力 * (1 / (1 + 护甲 * 护甲减伤因子))
      */
     public static Integer calDamage(Integer attack, Integer armor) {
         return new Double(attack * (1 / (1 + armor * 0.06))).intValue();
-    }
-
-    /**
-     * 计算击败该血量需要的攻击次数
-     */
-    public static Integer calHits(Integer attack, Integer armor, Integer hp) {
-        Integer damage = calDamage(attack, armor);
-        Integer remainder = hp % damage;
-        if (remainder > 2) {
-            // 有余数时算多一次打击数，允许一点误差
-            return hp / damage + 1;
-        } else {
-            return hp / damage;
-        }
     }
 
     /**
@@ -119,25 +58,40 @@ public class War3Utils {
     }
 
     /**
-     * 获得旗鼓相当的对手
-     * @param unit 自己单位
-     * @param unitWithstandTime 自己单位可承受伤害时间
-     * @param rivalWithstandTime 对手单位可承受伤害时间
+     * 护甲 = (总血量 / 血量 - 1) / 护甲减伤因子
      */
-//    public static Unit getRival(Unit unit, Integer unitWithstandTime, Integer rivalWithstandTime, Double rivalDelay, Integer rivalArmor) {
-//        Integer unitSumHp = getSumHpByArmorAndHp(unit.getArmor(), unit.getHp());
-//        Integer rivalDps = unitSumHp / unitWithstandTime;
-//        Integer rivalAttack = (int)(rivalDps * rivalDelay);
-//        Integer rivalSumHp = unit.getDps() * rivalWithstandTime;
-//        Integer rivalHp = getHpByArmorAndSumHp(rivalArmor, rivalSumHp);
-//
-//        Unit rival = new Unit();
-//        rival.setAttack(rivalAttack);
-//        rival.setAttackDelay(rivalDelay);
-//        rival.setArmor(rivalArmor);
-//        rival.setHp(rivalHp);
-//        rival.setLevel(unit.getLevel());
-//
-//        return rival;
-//    }
+    public static Integer getArmorByHpAndSumHp(Integer hp, Integer sumHp) {
+        return (int)((sumHp / hp - 1) / DEFENSE_ARMOR);
+    }
+
+    /**
+     * 获得旗鼓相当的怪物
+     * @param hero 英雄
+     * @param heroWithstandTime 英雄可承受伤害时间
+     * @param monsterWithstandTime 怪物可承受伤害时间
+     * @param delay 怪兽攻击间隔
+     * @param amount 怪兽同时攻击的数量
+     * @param monsterType 1: monster; 2: boss
+     */
+    public static Monster getMonsterByHero(Hero hero, Integer heroWithstandTime, Integer monsterWithstandTime, Double delay, Integer amount, Integer monsterType) {
+        Integer heroWithstandDamage = getSumHpByArmorAndHp(hero.getArmor(), hero.getHp());
+        Integer monsterDps = heroWithstandDamage / heroWithstandTime;
+        Integer monsterAttack = (int)(monsterDps * delay / amount);
+        Integer monsterWithstandDamage = hero.getDps() * monsterWithstandTime;
+        Integer monsterHp = hero.getMdps() * monsterWithstandTime;
+        Integer monsterArmor = getArmorByHpAndSumHp(monsterHp, monsterWithstandDamage);
+
+        Monster monster = new Monster()
+                .setLevel(hero.getLevel())
+                .setAttack(monsterAttack)
+                .setHp(monsterHp)
+                .setArmor(monsterArmor)
+                .setAttackDelay(delay);
+
+        if (monsterType == 2) {
+            monster.setName("boss");
+        }
+
+        return monster;
+    }
 }

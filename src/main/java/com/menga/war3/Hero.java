@@ -9,13 +9,13 @@ public class Hero {
     private final static Double ADD_ARMOR_PER_ABILITY = 0.3;
     private final static Double ADD_HP_PER_ABILITY = 25.0;
     private final static Double ADD_MP_PER_ABILITY = 15.0;
-    private final static Double MAGIC_DAMAGE_PER_ABILITY = 10.0;
+    private final static Double MAGIC_DAMAGE_PER_ABILITY = 4.0;
 
     // the level of power
     private Integer level = 1;
     // the time of attack once
     private Double attackDelay = 0.5;
-    private Double coolDown = 6.0;
+    private Double coolDown = 1.0;
 
     private Integer strength = 0;
     private Integer agility = 0;
@@ -31,6 +31,10 @@ public class Hero {
 
     public Hero() {
         super();
+    }
+
+    public Integer getLevel() {
+        return level;
     }
 
     public Hero setLevel(Integer level) {
