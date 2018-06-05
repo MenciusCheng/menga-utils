@@ -14,23 +14,47 @@ public class War3Utils {
     public final static Double DEFENSE_ARMOR = 0.06;
 
     public static void main(String[] args) {
-        Integer hAttack = 150;
-        Integer hDamage = getDamageByAttackDuration(hAttack, 0.5, 3);
-        Integer mArmor = 2;
-        Integer mHp = getHpByArmor(mArmor, hDamage);
-        System.out.println("hero_attack=" + hAttack + ", monster_armor=" + mArmor + ", monster_hp=" + mHp);
 
-        Integer mAttack = 50;
-        Integer mDamage = getDamageByAttackDuration(mAttack, 1.0, 60);
-        Integer hArmor = 15;
-        Integer hHp = getHpByArmor(hArmor, mDamage);
-        System.out.println("monster_attack=" + mAttack + ", hero_armor=" + hArmor + ", hero_hp=" + hHp);
+        Hero hero = new Hero()
+                .setStrength(50)
+                .setAgility(50)
+                .setIntelligence(34)
+                .setMainAbilityType(2)
+                .setAddedAttack(100)
+                .setAddedHp(500);
 
-        Integer hBDamage = getDamageByAttackDuration(hAttack, 0.5, 60);
-        Integer bArmor = 30;
-        Integer bHp = getHpByArmor(bArmor, hBDamage);
-        Integer bAttack = getAttackByHp(hHp, hArmor, 6, 0.5);
-        System.out.println("boss_attack=" + bAttack + ", boss_armor=" + bArmor + ", boss_hp=" + bHp);
+        System.out.println(hero);
+
+//        Hero hero = new Hero();
+//        hero.setLevel(1);
+//        hero.setAttack(150);
+//        hero.setArmor(15);
+//        hero.setHp(1350);
+//
+//        Unit monster = getRival(hero, 60, 3, 1.0, 2);
+//        Unit boss = getRival(hero, 6, 60, 0.5, 45);
+//
+//        System.out.println(hero);
+//        System.out.println(monster);
+//        System.out.println(boss);
+
+//        Integer hAttack = 150;
+//        Integer hDamage = getDamageByAttackDuration(hAttack, 0.5, 3);
+//        Integer mArmor = 2;
+//        Integer mHp = getHpByArmor(mArmor, hDamage);
+//        System.out.println("hero_attack=" + hAttack + ", monster_armor=" + mArmor + ", monster_hp=" + mHp);
+//
+//        Integer mAttack = 50;
+//        Integer mDamage = getDamageByAttackDuration(mAttack, 1.0, 60);
+//        Integer hArmor = 15;
+//        Integer hHp = getHpByArmor(hArmor, mDamage);
+//        System.out.println("monster_attack=" + mAttack + ", hero_armor=" + hArmor + ", hero_hp=" + hHp);
+//
+//        Integer hBDamage = getDamageByAttackDuration(hAttack, 0.5, 60);
+//        Integer bArmor = 30;
+//        Integer bHp = getHpByArmor(bArmor, hBDamage);
+//        Integer bAttack = getAttackByHp(hHp, hArmor, 6, 0.5);
+//        System.out.println("boss_attack=" + bAttack + ", boss_armor=" + bArmor + ", boss_hp=" + bHp);
     }
 
     /**
@@ -79,4 +103,41 @@ public class War3Utils {
             return hp / damage;
         }
     }
+
+    /**
+     * 总血量 = 血量 * (1 + 护甲 * 护甲减伤因子)
+     */
+    public static Integer getSumHpByArmorAndHp(Integer armor, Integer hp) {
+        return (int)(hp * (1 + armor * DEFENSE_ARMOR));
+    }
+
+    /**
+     * 血量 =  总血量 / (1 + 护甲 * 护甲减伤因子)
+     */
+    public static Integer getHpByArmorAndSumHp(Integer armor, Integer sumHp) {
+        return (int)(sumHp / (1 + armor * DEFENSE_ARMOR));
+    }
+
+    /**
+     * 获得旗鼓相当的对手
+     * @param unit 自己单位
+     * @param unitWithstandTime 自己单位可承受伤害时间
+     * @param rivalWithstandTime 对手单位可承受伤害时间
+     */
+//    public static Unit getRival(Unit unit, Integer unitWithstandTime, Integer rivalWithstandTime, Double rivalDelay, Integer rivalArmor) {
+//        Integer unitSumHp = getSumHpByArmorAndHp(unit.getArmor(), unit.getHp());
+//        Integer rivalDps = unitSumHp / unitWithstandTime;
+//        Integer rivalAttack = (int)(rivalDps * rivalDelay);
+//        Integer rivalSumHp = unit.getDps() * rivalWithstandTime;
+//        Integer rivalHp = getHpByArmorAndSumHp(rivalArmor, rivalSumHp);
+//
+//        Unit rival = new Unit();
+//        rival.setAttack(rivalAttack);
+//        rival.setAttackDelay(rivalDelay);
+//        rival.setArmor(rivalArmor);
+//        rival.setHp(rivalHp);
+//        rival.setLevel(unit.getLevel());
+//
+//        return rival;
+//    }
 }

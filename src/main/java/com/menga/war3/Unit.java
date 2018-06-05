@@ -7,44 +7,67 @@ package com.menga.war3;
  */
 public class Unit {
 
-    private Integer attack;
-    private Integer armor;
-    private Integer hp;
-    // 攻击间隔，单位为秒，表示攻击一次需要的时间
-    private Double attackDelay;
+    // the level of power
+    protected Integer level = 1;
+    // the time of attack once
+    protected Double attackDelay = 0.5;
 
-    public Unit() {
+    protected Integer attack;
+    protected Integer armor;
+    protected Integer hp;
+
+    public Unit() {}
+
+    public Integer getPdps() {
+        return (int)(getAttack() / attackDelay);
+    }
+
+    public Integer getMdps() {
+        return 0;
+    }
+
+    public Integer getDps() {
+        return getPdps() + getMdps();
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public Unit setLevel(Integer level) {
+        this.level = level;
+        return this;
+    }
+
+    public Unit setAttackDelay(Double attackDelay) {
+        this.attackDelay = attackDelay;
+        return this;
     }
 
     public Integer getAttack() {
         return attack;
     }
 
-    public void setAttack(Integer attack) {
+    public Unit setAttack(Integer attack) {
         this.attack = attack;
+        return this;
     }
 
     public Integer getArmor() {
         return armor;
     }
 
-    public void setArmor(Integer armor) {
+    public Unit setArmor(Integer armor) {
         this.armor = armor;
+        return this;
     }
 
     public Integer getHp() {
         return hp;
     }
 
-    public void setHp(Integer hp) {
+    public Unit setHp(Integer hp) {
         this.hp = hp;
-    }
-
-    public Double getAttackDelay() {
-        return attackDelay;
-    }
-
-    public void setAttackDelay(Double attackDelay) {
-        this.attackDelay = attackDelay;
+        return this;
     }
 }
