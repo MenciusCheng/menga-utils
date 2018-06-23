@@ -5,34 +5,48 @@ package com.menga.war3;
  *
  * Created by Marvel on 2018/6/4.
  */
-public class Unit {
+public class Unit implements UnitPower {
 
     // the level of power
-    protected Integer level = 1;
+    protected Integer level;
     // the time of attack once
-    protected Double attackDelay = 0.5;
+    protected Double attackDelay;
 
     protected Integer attack;
     protected Integer armor;
     protected Integer hp;
 
-    public Unit() {}
-
-    public Integer getPdps() {
-        return (int)(getAttack() / attackDelay);
+    public Unit() {
+        level = 1;
+        attackDelay = 1.0;
     }
 
+    @Override
+    public Integer getPdps() {
+        return (int)(attack / attackDelay);
+    }
+
+    @Override
     public Integer getMdps() {
         return 0;
     }
 
-    public Integer getDps() {
-        return getPdps() + getMdps();
+    @Override
+    public Integer getRps() {
+        return 0;
     }
 
-    public Integer getLevel() {
-        return level;
+    @Override
+    public Integer getArmor() {
+        return armor;
     }
+
+    @Override
+    public Integer getHp() {
+        return hp;
+    }
+
+    // Setter
 
     public Unit setLevel(Integer level) {
         this.level = level;
@@ -44,17 +58,9 @@ public class Unit {
         return this;
     }
 
-    public Integer getAttack() {
-        return attack;
-    }
-
     public Unit setAttack(Integer attack) {
         this.attack = attack;
         return this;
-    }
-
-    public Integer getArmor() {
-        return armor;
     }
 
     public Unit setArmor(Integer armor) {
@@ -62,12 +68,9 @@ public class Unit {
         return this;
     }
 
-    public Integer getHp() {
-        return hp;
-    }
-
     public Unit setHp(Integer hp) {
         this.hp = hp;
         return this;
     }
+
 }

@@ -3,7 +3,7 @@ package com.menga.war3;
 /**
  * Created by Marvel on 2018/6/4.
  */
-public class Hero {
+public class Hero implements UnitPower {
 
     private final static Double ADD_ATTACK_PER_ABILITY = 1.0;
     private final static Double ADD_ARMOR_PER_ABILITY = 0.3;
@@ -29,13 +29,57 @@ public class Hero {
     private Integer addedHp = 0;
     private Integer addedMp = 0;
 
-    public Hero() {
-        super();
+    public Hero() {}
+
+    @Override
+    public Integer getPdps() {
+        return (int)(getAttack() / attackDelay);
     }
 
-    public Integer getLevel() {
-        return level;
+    @Override
+    public Integer getMdps() {
+        return (int)(getMagic() / coolDown);
     }
+
+    @Override
+    public Integer getRps() {
+        return 0;
+    }
+
+    @Override
+    public Integer getArmor() {
+        return (int)(agility * ADD_ARMOR_PER_ABILITY + addedArmor);
+    }
+
+    @Override
+    public Integer getHp() {
+        return (int)(strength * ADD_HP_PER_ABILITY + addedHp);
+    }
+
+    private Integer getMp() {
+        return (int)(intelligence * ADD_MP_PER_ABILITY + addedMp);
+    }
+
+    private Integer getAttack() {
+        return (int)(getMainAbility() * ADD_ATTACK_PER_ABILITY + addedAttack);
+    }
+
+    private Integer getMagic() {
+        return (int)(getMainAbility() * MAGIC_DAMAGE_PER_ABILITY);
+    }
+
+    private Integer getMainAbility() {
+        if (mainAbilityType == 1)
+            return strength;
+        else if (mainAbilityType == 2)
+            return agility;
+        else if (mainAbilityType == 3)
+            return intelligence;
+        else
+            return 0;
+    }
+
+    // Setter
 
     public Hero setLevel(Integer level) {
         this.level = level;
@@ -92,59 +136,16 @@ public class Hero {
         return this;
     }
 
-    /**
-     * physical damage per second
-     */
-    public Integer getPdps() {
-        return (int)(getAttack() / attackDelay);
-    }
-
-    /**
-     * magic damage per second
-     */
-    public Integer getMdps() {
-        return (int)(getMagic() / coolDown);
-    }
-
-    /**
-     * damage per second
-     */
-    public Integer getDps() {
-        return getPdps() + getMdps();
-    }
-
-    public Integer getAttack() {
-        return (int)(getMainAbility() * ADD_ATTACK_PER_ABILITY + addedAttack);
-    }
-
-    public Integer getMagic() {
-        return (int)(getMainAbility() * MAGIC_DAMAGE_PER_ABILITY);
-    }
-
-    public Integer getArmor() {
-        return (int)(agility * ADD_ARMOR_PER_ABILITY + addedArmor);
-    }
-
-    public Integer getHp() {
-        return (int)(strength * ADD_HP_PER_ABILITY + addedHp);
-    }
-
-    public Integer getMp() {
-        return (int)(intelligence * ADD_MP_PER_ABILITY + addedMp);
-    }
-
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("Hero{");
         sb.append("level=").append(level);
         sb.append(", pdps=").append(getPdps());
         sb.append(", mdps=").append(getMdps());
-        sb.append(", dps=").append(getDps());
         sb.append(", attack=").append(getAttack());
         sb.append(", magic=").append(getMagic());
         sb.append(", armor=").append(getArmor());
         sb.append(", hp=").append(getHp());
-        sb.append(", mp=").append(getMp());
         sb.append(", attackDelay=").append(attackDelay);
         sb.append(", coolDown=").append(coolDown);
         sb.append(", strength=").append(strength);
@@ -154,20 +155,8 @@ public class Hero {
         sb.append(", addedAttack=").append(addedAttack);
         sb.append(", addedArmor=").append(addedArmor);
         sb.append(", addedHp=").append(addedHp);
-        sb.append(", addedMp=").append(addedMp);
         sb.append('}');
         return sb.toString();
-    }
-
-    private Integer getMainAbility() {
-        if (mainAbilityType == 1)
-            return strength;
-        else if (mainAbilityType == 2)
-            return agility;
-        else if (mainAbilityType == 3)
-            return intelligence;
-        else
-            return 0;
     }
 
 }

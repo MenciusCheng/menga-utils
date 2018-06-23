@@ -73,16 +73,15 @@ public class War3Utils {
      * @param amount 怪兽同时攻击的数量
      * @param monsterType 1: monster; 2: boss
      */
-    public static Monster getMonsterByHero(Hero hero, Integer heroWithstandTime, Integer monsterWithstandTime, Double delay, Integer amount, Integer monsterType) {
+    public static Monster getMonsterByHero(UnitPower hero, Integer heroWithstandTime, Integer monsterWithstandTime, Double delay, Integer amount, Integer monsterType) {
         Integer heroWithstandDamage = getSumHpByArmorAndHp(hero.getArmor(), hero.getHp());
         Integer monsterDps = heroWithstandDamage / heroWithstandTime;
         Integer monsterAttack = (int)(monsterDps * delay / amount);
-        Integer monsterWithstandDamage = hero.getDps() * monsterWithstandTime;
+        Integer monsterWithstandDamage = (hero.getPdps() + hero.getMdps()) * monsterWithstandTime;
         Integer monsterHp = hero.getMdps() * monsterWithstandTime;
         Integer monsterArmor = getArmorByHpAndSumHp(monsterHp, monsterWithstandDamage);
 
         Monster monster = new Monster()
-                .setLevel(hero.getLevel())
                 .setAttack(monsterAttack)
                 .setHp(monsterHp)
                 .setArmor(monsterArmor)
