@@ -146,8 +146,8 @@ public class Hero implements UnitPower {
         sb.append(", magic=").append(getMagic());
         sb.append(", armor=").append(getArmor());
         sb.append(", hp=").append(getHp());
-        sb.append(", attackDelay=").append(attackDelay);
-        sb.append(", coolDown=").append(coolDown);
+//        sb.append(", attackDelay=").append(attackDelay);
+//        sb.append(", coolDown=").append(coolDown);
         sb.append(", strength=").append(strength);
         sb.append(", agility=").append(agility);
         sb.append(", intelligence=").append(intelligence);

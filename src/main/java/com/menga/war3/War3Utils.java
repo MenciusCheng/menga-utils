@@ -15,23 +15,6 @@ public class War3Utils {
 
     public static void main(String[] args) {
 
-        Hero hero = new Hero()
-                .setStrength(50)
-                .setAgility(50)
-                .setIntelligence(34)
-                .setMainAbilityType(2)
-                .setAddedAttack(100)
-                .setAddedHp(500);
-
-        System.out.println(hero);
-
-        Monster monster = getMonsterByHero(hero, 6, 3, 1.0, 10, 1);
-
-        System.out.println(monster);
-
-        Monster boss = getMonsterByHero(hero, 6, 60, 0.5, 1, 2);
-
-        System.out.println(boss);
     }
 
     /**
@@ -40,7 +23,7 @@ public class War3Utils {
      * damage = 攻击力 * (1 / (1 + 护甲 * 护甲减伤因子))
      */
     public static Integer calDamage(Integer attack, Integer armor) {
-        return new Double(attack * (1 / (1 + armor * 0.06))).intValue();
+        return new Double(attack * (1 / (1 + armor * DEFENSE_ARMOR))).intValue();
     }
 
     /**
@@ -92,5 +75,17 @@ public class War3Utils {
         }
 
         return monster;
+    }
+
+    /**
+     * 计算能承受伤害的时间
+     * @param attacker 攻击者
+     * @param defender 防御者
+     * @return 承受时间
+     */
+    public static Double calWithstandTimeByAttack(UnitPower attacker, UnitPower defender) {
+        // 每秒承受伤害 = 护甲减伤后的每秒物理伤害 + 每秒魔法伤害 - 每秒恢复值
+        Integer withstandDps = calDamage(attacker.getPdps(), defender.getArmor()) + defender.getMdps() - defender.getRps();
+        return (double)defender.getHp() / withstandDps;
     }
 }
