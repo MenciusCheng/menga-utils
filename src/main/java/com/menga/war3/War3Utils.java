@@ -1,5 +1,7 @@
 package com.menga.war3;
 
+import scala.Int;
+
 /**
  * Created by Marvel on 2018/6/4.
  */
@@ -81,11 +83,17 @@ public class War3Utils {
      * 计算能承受伤害的时间
      * @param attacker 攻击者
      * @param defender 防御者
+     * @param attackType 攻击类型：1. 英雄攻击，算上魔法伤害；2. 怪物攻击，不算魔法伤害
      * @return 承受时间
      */
-    public static Double calWithstandTimeByAttack(UnitPower attacker, UnitPower defender) {
-        // 每秒承受伤害 = 护甲减伤后的每秒物理伤害 + 每秒魔法伤害 - 每秒恢复值
-        Integer withstandDps = calDamage(attacker.getPdps(), defender.getArmor()) + defender.getMdps() - defender.getRps();
-        return (double)defender.getHp() / withstandDps;
+    public static Integer calWithstandTimeByAttack(UnitPower attacker, UnitPower defender, Integer attackType) {
+        Integer withstandDps = 1;
+        if (attackType == 1) {
+            // 每秒承受伤害 = 护甲减伤后的每秒物理伤害 + 每秒魔法伤害 - 每秒恢复值
+            withstandDps = calDamage(attacker.getPdps(), defender.getArmor()) + defender.getMdps() - defender.getRps();
+        } else if (attackType == 2) {
+            withstandDps = calDamage(attacker.getPdps(), defender.getArmor()) - defender.getRps();
+        }
+        return defender.getHp() / withstandDps;
     }
 }

@@ -43,7 +43,7 @@ public class Hero implements UnitPower {
 
     @Override
     public Integer getRps() {
-        return 0;
+        return (int)(strength * 0.01);
     }
 
     @Override
@@ -149,9 +149,9 @@ public class Hero implements UnitPower {
 //        sb.append(", attackDelay=").append(attackDelay);
 //        sb.append(", coolDown=").append(coolDown);
         sb.append(", strength=").append(strength);
-        sb.append(", agility=").append(agility);
-        sb.append(", intelligence=").append(intelligence);
-        sb.append(", mainAbilityType=").append(mainAbilityType);
+//        sb.append(", agility=").append(agility);
+//        sb.append(", intelligence=").append(intelligence);
+//        sb.append(", mainAbilityType=").append(mainAbilityType);
         sb.append(", addedAttack=").append(addedAttack);
         sb.append(", addedArmor=").append(addedArmor);
         sb.append(", addedHp=").append(addedHp);
