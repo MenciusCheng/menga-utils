@@ -35,7 +35,8 @@ public class SignDemo {
         String appKey = decode("dianrong");
         // 应用级参数
         // 生产
-        String parameter = decode("%7b%22tradingCompanyId%22%3a%22504889%22%2c%22startTime%22%3a%221489314236375%22%2c%22endTime%22%3a%221520850236375%22%2c%22funderId%22%3a%222%22%7d");
+        String parameter = decode("%7b%22tradingCompanyId%22%3a%22511081%22%2c%22startTime%22%3a%221484438400000%22%2c%22endTime%22%3a%221530685688302%22%2c%22funderId%22%3a%222%22%7d");
+//        String parameter = decode("%7b%22tradingCompanyId%22%3a%22504889%22%2c%22startTime%22%3a%221489314236375%22%2c%22endTime%22%3a%221520850236375%22%2c%22funderId%22%3a%222%22%7d");
         // sandbox3
 //        String parameter = decode("%7b%22tradingCompanyId%22%3a%22506741%22%2c%22startTime%22%3a%221489314236375%22%2c%22endTime%22%3a%221520850236375%22%2c%22funderId%22%3a%222%22%7d");
 

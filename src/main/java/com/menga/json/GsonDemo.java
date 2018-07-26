@@ -16,6 +16,10 @@ public class GsonDemo {
     private static Gson gson = new Gson();
 
     public static void main(String[] args) {
+
+    }
+
+    private static void testMapJson() {
         Type type = new TypeToken<Map<String, String>>(){}.getType();
         Map m2 = gson.fromJson("{\"a\":\"b\",\"b\":1}", new java.util.HashMap<String, String>().getClass());
         Map m = gson.fromJson("{\"a\":\"b\",\"b\":1}", type);
