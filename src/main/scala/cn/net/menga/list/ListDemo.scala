@@ -6,7 +6,15 @@ package cn.net.menga.list
 object ListDemo {
 
   def main(args: Array[String]): Unit = {
-    testFlatMap()
+    testSortWith()
+  }
+
+  def testGroupBy(): Unit = {
+    val list = List(Lion(1,"apple"), Lion(2,"banana"))
+    val map = list.groupBy(_.id)
+
+    System.out.println(map)
+    System.out.println(map.contains(4))
   }
 
   def testFlatMap(): Unit = {
@@ -24,7 +32,7 @@ object ListDemo {
   }
 
   def testToMap(): Unit = {
-    val listMap = List((1, "333"), (3, "555"), (6, "677"))
+    val listMap = List((1, "333"), (3, "555"), (6, "677"), (6, "699"))
     val map = listMap.toMap
     System.out.println(map)
   }
