@@ -17,27 +17,27 @@ object GsonDemo {
   lazy val gson = new Gson()
 
   def main(args: Array[String]): Unit = {
+    testFromJsonScala()
+  }
 
-//    val giant = new Giant(
-//      1,
-//      "mai",
-//      30.5,
-//      1527126580876L,
-//      List(
-//        new GiantItem(1, "apple", 12.3, 1527126580876L),
-//        new GiantItem(2, "banana", 8.5, 1527126580876L)
-//      )
-//    )
-//    val giant = new Giant(
-//      Optional.of(1),
-//      Optional.of("mai"),
-//      Optional.of(30.5),
-//      Optional.of(1527126580876L),
-//      List(
-//        new GiantItem(Optional.of(1), Optional.of("apple"), Optional.of(12.3), Optional.of(1527126580876L)),
-//        new GiantItem(Optional.of(2), Optional.of("banana"), Optional.of(8.5), Optional.of(1527126580876L))
-//      )
-//    )
+  def testToJsonScala(): Unit = {
+    val request = new BrRequest()
+    request.requestId = "00120180830113132766"
+    request.admissionResult = "1"
+    request.contractAmt = "500"
+    request.reason = ""
+
+    val requestJson = gson.toJson(request)
+    System.out.println(requestJson)
+  }
+
+  def testFromJsonScala(): Unit = {
+    val json = "{\"head\":{\"responseCode\":\"900\",\"responseMsg\":\"success\"}}"
+    val response: BrResponse = gson.fromJson(json, classOf[BrResponse])
+    System.out.println(response.head.responseCode)
+  }
+
+  def testToJsonOptional(): Unit = {
     val giant = new Giant(
       Optional.of(1),
       Optional.of("mai")
