@@ -17,7 +17,26 @@ object GsonDemo {
   lazy val gson = new Gson()
 
   def main(args: Array[String]): Unit = {
-    testFromJsonScala()
+    unfullObject()
+    exfullObject()
+  }
+
+  /**
+    * 测试字段不够的反json
+    */
+  def unfullObject(): Unit = {
+    val json = "{\"name\":\"aaa\"}"
+    val obj = gson.fromJson(json, classOf[GsonObject])
+    System.out.println(obj)
+  }
+
+  /**
+    * 测试字段超出的反json
+    */
+  def exfullObject(): Unit = {
+    val json = "{\"id\":1,\"name\":\"aaa\",\"amount\":1.1,\"mark\":0}"
+    val obj = gson.fromJson(json, classOf[GsonObject])
+    System.out.println(obj)
   }
 
   def testToJsonScala(): Unit = {
