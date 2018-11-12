@@ -15,6 +15,7 @@ class FtpTests {
   def openFtp(): Unit = {
     ftpClient = new FtpClient("uftps.ximucredit.com", 21, "www.isuwang.com", "KRPPnFK1")
     ftpClient.open()
+    System.out.println("登录FTP成功")
   }
 
   @AfterEach
@@ -24,7 +25,7 @@ class FtpTests {
 
   @Test
   def test1(): Unit = {
-    val r = ftpClient.uploadFile("/fsp20/ln/20181029/", "a.json", new File(ClassLoader.getSystemResource("json/a.json").getFile))
+    val r = ftpClient.uploadFile("/fsp20/ln/20181029/", "a.json", new File(ClassLoader.getSystemResource("json/a.jpg").getFile))
     System.out.println(r)
   }
 

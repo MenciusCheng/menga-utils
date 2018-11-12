@@ -33,6 +33,9 @@ public class FtpClient {
 
     public void open() throws IOException {
         ftp = new FTPClient();
+        //
+        ftp.enterLocalPassiveMode();
+
         ftp.connect(server, port);
         int reply = ftp.getReplyCode();
         if (!FTPReply.isPositiveCompletion(reply)) {
@@ -71,6 +74,7 @@ public class FtpClient {
      */
     public boolean uploadFile(String folderPath, String fileName, File file) throws IOException {
         mkDirs(folderPath);
+        System.out.println("创建文件成功，正在上传文件");
         return ftp.storeFile(folderPath + fileName, new FileInputStream(file));
     }
 
