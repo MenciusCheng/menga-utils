@@ -25,7 +25,7 @@ class FtpTests {
 
   @Test
   def test1(): Unit = {
-    val r = ftpClient.uploadFile("/fsp20/ln/20181029/", "a.json", new File(ClassLoader.getSystemResource("json/a.jpg").getFile))
+    val r = ftpClient.uploadFile("/fsp20/ln/20181029/", "longmu.gif", new File(ClassLoader.getSystemResource("images/longmu.gif").getFile))
     System.out.println(r)
   }
 

@@ -35,10 +35,10 @@ public class SignDemo {
         String appKey = decode("dianrong");
         // 应用级参数
         // 生产
-        String parameter = decode("%7b%22tradingCompanyId%22%3a%22511081%22%2c%22startTime%22%3a%221484438400000%22%2c%22endTime%22%3a%221530685688302%22%2c%22funderId%22%3a%222%22%7d");
-//        String parameter = decode("%7b%22tradingCompanyId%22%3a%22504889%22%2c%22startTime%22%3a%221489314236375%22%2c%22endTime%22%3a%221520850236375%22%2c%22funderId%22%3a%222%22%7d");
-        // sandbox3
-//        String parameter = decode("%7b%22tradingCompanyId%22%3a%22506741%22%2c%22startTime%22%3a%221489314236375%22%2c%22endTime%22%3a%221520850236375%22%2c%22funderId%22%3a%222%22%7d");
+//        String parameter = decode("%7b%22tradingCompanyId%22%3a%22511081%22%2c%22startTime%22%3a%221484438400000%22%2c%22endTime%22%3a%221530685688302%22%2c%22funderId%22%3a%222%22%7d");
+//        String parameter = decode("%7B%22tradingCompanyId%22%3A%22115373%22%2C%22startTime%22%3A%221505023165062%22%2C%22endTime%22%3A%221536559165062%22%2C%22funderId%22%3A%222%22%7D");
+        // sandbox1
+        String parameter = decode("%7b%22tradingCompanyId%22%3a%227%22%2c%22startTime%22%3a%221514764800000%22%2c%22endTime%22%3a%221536644890896%22%2c%22funderId%22%3a%222%22%7d");
 
         //系统级参数
         Map<String, String> sysParams = new HashMap<String, String>();

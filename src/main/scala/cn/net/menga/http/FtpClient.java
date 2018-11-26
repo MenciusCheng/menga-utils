@@ -1,5 +1,6 @@
 package cn.net.menga.http;
 
+import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
@@ -33,10 +34,16 @@ public class FtpClient {
 
     public void open() throws IOException {
         ftp = new FTPClient();
-        //
+        ftp.connect(server, port);
+
+        // 设置超时时间
+        ftp.setDefaultTimeout(6000);
+        ftp.setConnectTimeout(6000);
+        ftp.setDataTimeout(6000);
+
+        // 设置为被动模式
         ftp.enterLocalPassiveMode();
 
-        ftp.connect(server, port);
         int reply = ftp.getReplyCode();
         if (!FTPReply.isPositiveCompletion(reply)) {
             ftp.disconnect();
@@ -74,7 +81,11 @@ public class FtpClient {
      */
     public boolean uploadFile(String folderPath, String fileName, File file) throws IOException {
         mkDirs(folderPath);
-        System.out.println("创建文件成功，正在上传文件");
+        System.out.println("创建文件夹成功，正在上传文件");
+
+        ftp.setFileType(FTP.BINARY_FILE_TYPE);
+        ftp.setFileTransferMode(FTP.STREAM_TRANSFER_MODE);
+
         return ftp.storeFile(folderPath + fileName, new FileInputStream(file));
     }
 
