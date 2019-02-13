@@ -25,5 +25,7 @@ public class ResourceDemo {
         System.out.println(ResourceDemo.class.getClassLoader().getResource("files/testResource.properties"));
         // 不能以 / 开头
         System.out.println(ResourceDemo.class.getClassLoader().getResource("/testResource.properties"));
+        // 读取 jar 包里面的资源
+        System.out.println(ResourceDemo.class.getClassLoader().getResource("scala-xml.properties"));
     }
 }
