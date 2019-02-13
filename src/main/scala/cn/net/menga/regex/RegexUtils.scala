@@ -13,12 +13,22 @@ object RegexUtils {
   /**
     * 正则表达式：验证手机号码
     */
-  lazy val REGEX_PHONE = """^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$"""
+  lazy val REGEX_PHONE: String = """^1([358][0-9]|4[579]|66|7[0135678]|9[89])[0-9]{8}$"""
 
   def main(args: Array[String]): Unit = {
-    System.out.println("44082319990721732x".matches(REGEX_ID_CARD))
-    System.out.println("4408231999072173211".matches(REGEX_ID_CARD))
-    System.out.println("15811112222".matches(REGEX_PHONE))
-    System.out.println("158111122226".matches(REGEX_PHONE))
+//    System.out.println("44082319990721732x".matches(REGEX_ID_CARD))
+//    System.out.println("4408231999072173211".matches(REGEX_ID_CARD))
+//    System.out.println("15811112222".matches(REGEX_PHONE))
+//    System.out.println("158111122226".matches(REGEX_PHONE))
+
+    val str = "亲爱的${name},您${name}的验证码为${code}"
+//    val reg: Regex = """(?<=\$\{)\w+(?=\})""".r
+//    val sl = reg.findAllMatchIn(str).toList.map(a => a.toString())
+//    sl.foreach(s => {
+//      System.out.println(s)
+//    })
+
+    System.out.println(str.replace("${name}", "hahah").replace("${code}",  "wawa"))
+
   }
 }
