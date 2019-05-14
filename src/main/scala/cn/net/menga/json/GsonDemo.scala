@@ -17,8 +17,10 @@ object GsonDemo {
   lazy val gson = new Gson()
 
   def main(args: Array[String]): Unit = {
-    unfullObject()
-    exfullObject()
+//    unfullObject()
+//    exfullObject()
+    testToJsonScalaCaseClass()
+    testFromJsonScalaCaseClass()
   }
 
   /**
@@ -73,6 +75,19 @@ object GsonDemo {
     val typeToken = new TypeToken[java.util.Map[String, String]](){}.getType
     val m2: java.util.Map[String, String] = gson.fromJson("{\"a\":\"b\",\"b\":1}", typeToken)
     p(m2.toString, m2("b"))
+  }
+
+  def testToJsonScalaCaseClass(): Unit = {
+    val request = BrRequestCC("00120180830113132766", "1", "500", "")
+
+    val requestJson = gson.toJson(request)
+    System.out.println(requestJson)
+  }
+
+  def testFromJsonScalaCaseClass(): Unit = {
+    val json = "{\"head\":{\"responseCode\":\"900\",\"responseMsg\":\"success\"}}"
+    val response: BrResponseCC = gson.fromJson(json, classOf[BrResponseCC])
+    System.out.println(response.head.responseCode)
   }
 
 }
