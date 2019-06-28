@@ -3,7 +3,7 @@ package com.menga.math;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static com.menga.math.EnglishNumberToWords.convert;
+import static cn.net.menga.math.EnglishNumberToWords.convert;
 
 /**
  * Created by Marvel on 2019/6/27.
