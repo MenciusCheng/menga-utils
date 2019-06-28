@@ -6,7 +6,14 @@ package cn.net.menga.list
 object ListDemo {
 
   def main(args: Array[String]): Unit = {
-    testSortWith()
+    testInit()
+  }
+
+  def testInit(): Unit = {
+    val list = List(1, 3, 6, 9)
+    System.out.println(list)
+    System.out.println(list.init)
+    System.out.println(list.last)
   }
 
   def testGroupBy(): Unit = {
