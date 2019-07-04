@@ -1,12 +1,22 @@
 package cn.net.menga.list
 
+import scala.collection.immutable
+
 /**
   * Created by Marvel on 2018/7/16.
   */
 object ListDemo {
 
   def main(args: Array[String]): Unit = {
-    testInit()
+    testCombinations()
+  }
+
+  def testCombinations(): Unit = {
+    val list = List(1, 3, 6, 9)
+    System.out.println(list.combinations(2).toList)
+
+    val n = (1 to list.size).flatMap(it => list.combinations(it)).toList
+    System.out.println(n)
   }
 
   def testInit(): Unit = {
