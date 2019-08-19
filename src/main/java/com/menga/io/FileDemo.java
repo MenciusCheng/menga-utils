@@ -27,7 +27,15 @@ public class FileDemo {
         }
     }
 
+    public static void getFile(File file) {
+        System.out.println(file.getName());
+        System.out.println(file.getPath());
+        System.out.println(file.getAbsoluteFile());
+        System.out.println(file.getAbsolutePath());
+    }
+
     public static void main(String[] args) {
-        listAllFiles(new File("src/main/java/com/menga"));
+//        listAllFiles(new File("src/main/java/com/menga"));
+        getFile(new File("D:\\IdeaProjects\\menga-utils\\src\\main\\java\\com\\menga\\io\\FileDemo.java"));
     }
 }
