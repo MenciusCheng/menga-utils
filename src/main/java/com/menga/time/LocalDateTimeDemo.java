@@ -14,9 +14,9 @@ public class LocalDateTimeDemo {
 
     public static void main(String[] args) {
         LocalDateTime t1 = LocalDateTime.now();
-        LocalDateTime t2 = t1.plusDays(3).plusHours(25);
+        LocalDateTime t2 = t1.plusDays(3).minusHours(2);
 
-        System.out.println(DAYS.between(t1, t2));
+        System.out.println(DAYS.between(t1.toLocalDate(), t2.toLocalDate()));
 
         System.out.println(t1.format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")));
         System.out.println(t2.format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")));
