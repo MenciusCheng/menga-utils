@@ -21,5 +21,8 @@ public class LocalDateTimeDemo {
         System.out.println(t1.format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")));
         System.out.println(t2.format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")));
         System.out.println(LocalDateTime.of(t2.toLocalDate(), LocalTime.of(18, 0)));
+
+        LocalTime t3 = LocalTime.now();
+        System.out.println(t3.format(DateTimeFormatter.ofPattern("HH:mm")));
     }
 }
