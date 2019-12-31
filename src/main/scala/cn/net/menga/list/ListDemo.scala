@@ -8,7 +8,13 @@ import scala.collection.immutable
 object ListDemo {
 
   def main(args: Array[String]): Unit = {
-    testCombinations()
+    testCaseClassEqual()
+  }
+
+  def testCaseClassEqual(): Unit = {
+    val d1 = Dog(id = 1, age = 2)
+    val d2 = Dog(id = 1, age = 2)
+    System.out.println(d1 == d2)
   }
 
   def testCombinations(): Unit = {
