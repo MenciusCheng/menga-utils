@@ -14,6 +14,8 @@ public class Giant {
     private Optional<Long> createdAt;
     private List<GiantItem> items;
 
+    public Giant() {}
+
     public Giant(Optional<Integer> id, Optional<String> name, Optional<Double> height, Optional<Long> createdAt, List<GiantItem> items) {
         this.id = id;
         this.name = name;
@@ -22,9 +24,10 @@ public class Giant {
         this.items = items;
     }
 
-    public Giant(Optional<Integer> id, Optional<String> name) {
+    public Giant(Optional<Integer> id, Optional<String> name, Optional<Double> height) {
         this.id = id;
         this.name = name;
+        this.height = height;
     }
 
     public Optional<Integer> getId() {

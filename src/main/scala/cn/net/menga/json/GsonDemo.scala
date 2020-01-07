@@ -19,8 +19,10 @@ object GsonDemo {
   def main(args: Array[String]): Unit = {
 //    unfullObject()
 //    exfullObject()
-    testToJsonScalaCaseClass()
-    testFromJsonScalaCaseClass()
+//    testToJsonScalaCaseClass()
+//    testFromJsonScalaCaseClass()
+
+    testToJsonOptional()
   }
 
   /**
@@ -61,7 +63,8 @@ object GsonDemo {
   def testToJsonOptional(): Unit = {
     val giant = new Giant(
       Optional.of(1),
-      Optional.of("mai")
+      Optional.of("mai"),
+      Optional.empty()
     )
     val jsonString = gson.toJson(giant)
     System.out.println(jsonString)
